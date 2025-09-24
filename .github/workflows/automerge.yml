@@ -10,7 +10,6 @@ on:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    
     if: github.actor == 'exercism-solutions-syncer[bot]'
     
     steps:
@@ -19,3 +18,4 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_METHOD: "squash"
+          MERGE_LABELS: ""
