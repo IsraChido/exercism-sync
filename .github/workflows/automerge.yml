@@ -1,9 +1,7 @@
-# This workflow automatically merges pull requests from exercism-solutions-syncer
-
+# TEMPORARY DEBUGGING WORKFLOW
 name: Automerge Exercism Solutions
 
 on:
-  # Triggers the workflow when a pull request is opened, synchronized, or reopened
   pull_request_target:
     types:
       - opened
@@ -11,18 +9,9 @@ on:
       - reopened
 
 jobs:
-  automerge:
+  debug:
     runs-on: ubuntu-latest
     
-    # This is the key condition: only run the job if the PR author is the syncer bot
-    if: github.actor == 'exercism-solutions-syncer'
-    
     steps:
-      - name: Enable Automerge
-        # This popular action enables GitHub's native auto-merge feature
-        uses: pascalgn/automerge-action@v0.16.2
-        env:
-          # The GITHUB_TOKEN is automatically provided by GitHub
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          # You can change the merge method to 'merge' or 'rebase' if you prefer
-          MERGE_METHOD: "squash"
+      - name: 'Debug: Print GitHub context'
+        run: echo "${{ toJSON(github) }}"
