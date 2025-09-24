@@ -1,4 +1,3 @@
-# TEMPORARY DEBUGGING WORKFLOW
 name: Automerge Exercism Solutions
 
 on:
@@ -9,9 +8,14 @@ on:
       - reopened
 
 jobs:
-  debug:
+  automerge:
     runs-on: ubuntu-latest
     
+    if: github.actor == 'exercism-solutions-syncer[bot]'
+    
     steps:
-      - name: 'Debug: Print GitHub context'
-        run: echo "${{ toJSON(github) }}"
+      - name: Enable Automerge
+        uses: pascalgn/automerge-action@v0.16.2
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_METHOD: "squash"
