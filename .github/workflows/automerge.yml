@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'exercism-solutions-syncer[bot]'
     
+    permissions:
+      contents: write
+      pull-requests: write
+      
     steps:
       - name: Enable Automerge
         uses: pascalgn/automerge-action@v0.16.2
